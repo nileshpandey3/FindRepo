@@ -1,6 +1,8 @@
 package com.example.nileshpandey.findrepo
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +38,16 @@ class search_result_activity : AppCompatActivity() {
                         println(Repo.full_name)
                     }
 
+
                     val listView = findViewById<ListView>(R.id.repoListView)
+                    listView.setOnItemClickListener { adapterView, view, i, l ->
+
+                        val selectedRepo = searchResult!!.items[i]
+
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(selectedRepo.html_url))
+
+                        startActivity(intent)
+                    }
                     val adapter = RepoAdapter(this@search_result_activity,android.R.layout.simple_list_item_1, searchResult!!.items)
                     listView.adapter = adapter
                 }
