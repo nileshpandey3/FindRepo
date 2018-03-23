@@ -20,7 +20,7 @@ interface GithubService{
 }
 
 class GithubSearchResults(val items: List<Repo>)
-class Repo(val full_name:String, val html_url:String)
+class Repo(val full_name:String,val owner: GithubUser , val html_url:String)
 class  GithubUser(val avatar_url:String)
 
 class GithubRetreiver{

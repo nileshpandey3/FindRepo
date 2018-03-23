@@ -79,8 +79,7 @@ class RepoAdapter(context: Context?, resource: Int, objects: List<Repo>?) : Arra
         val imageView = repoView.findViewById<ImageView>(R.id.imageView)
         val repo = getItem(position)
 
-        //This code doesn't work to parse image
-        //Picasso.get().load(Uri.parse(repo.owner.)).into(imageView)
+        Picasso.get().load(Uri.parse(repo.owner.avatar_url)).into(imageView)
 
         textView.text = repo.full_name
 
