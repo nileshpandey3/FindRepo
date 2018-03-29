@@ -41,12 +41,10 @@ class FindRepoTests {
         val repoName = uiDevice.findObject(UiSelector().className("android.view.ViewGroup").index(0))
                 .getChild(UiSelector().resourceId("com.example.nileshpandey.findrepo:id/textView")).text
 
-        Log.d("object found",repoName)
+
         onData(anything()).inAdapterView(allOf(withId(R.id.repoListView))).atPosition(0).perform(click())
         val chromeText = uiDevice.findObject(UiSelector().resourceId("com.android.chrome:id/url_bar")).text
-        println(chromeText)
-
-
+        assertTrue(chromeText.contains(repoName.toString()))
 
 
 
