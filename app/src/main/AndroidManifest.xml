@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".search_result_activity" />
         <activity android:name=".repo_list_layout"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="9d17ff1af596346e901a87b87990a805f7b9c991" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
