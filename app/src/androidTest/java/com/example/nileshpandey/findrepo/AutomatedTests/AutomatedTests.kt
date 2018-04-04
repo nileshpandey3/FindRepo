@@ -48,5 +48,15 @@ class FindRepoTests : ResultScreen(){
 
     }
 
+    @Test
+    fun verifyScrolling(){
 
+        //To Test that user can scroll the repolist results after searching for a term "Kotlin"
+        uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        searchField.perform(click()).perform(typeText("Kotlin"))
+        clickSearchButton
+        Thread.sleep(3000)
+        repoResultList.perform(scrollTo())
+
+    }
 }
