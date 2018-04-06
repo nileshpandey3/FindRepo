@@ -1,4 +1,4 @@
-package com.example.nileshpandey.findrepo.Screens
+package com.example.nileshpandey.findrepo.AutomatedTests.Screens
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -12,10 +12,9 @@ import com.example.nileshpandey.findrepo.R
 import org.hamcrest.CoreMatchers
 import org.junit.Rule
 
-open class SearchScreen {
+open class SearchScreen : ResultScreen() {
 
-    open lateinit var uiDevice: UiDevice
     val searchField = Espresso.onView(withId(R.id.SearchEditText))!!
-    val clickSearchButton = Espresso.onView(withId(R.id.SearchButton)).perform(click())!!
+    val searchButton = Espresso.onView(withId(R.id.SearchButton))!!
 
 }
