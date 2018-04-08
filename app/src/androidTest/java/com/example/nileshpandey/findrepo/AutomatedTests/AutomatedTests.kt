@@ -1,14 +1,13 @@
+
 package com.example.nileshpandey.findrepo.AutomatedTests
 import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.example.nileshpandey.findrepo.AutomatedTests.Screens.SearchScreen
+import com.example.nileshpandey.findrepo.MainActivity
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Assert.*
-import android.support.test.rule.ActivityTestRule
-import org.junit.Rule
-import com.example.nileshpandey.findrepo.MainActivity
-import com.example.nileshpandey.findrepo.AutomatedTests.Screens.SearchScreen
 
 
 @RunWith(AndroidJUnit4::class)
@@ -18,6 +17,7 @@ class FindRepoTests : SearchScreen(){
     @Rule @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
+
     @Test
     fun searchBlankTerm() {
 
@@ -26,9 +26,8 @@ class FindRepoTests : SearchScreen(){
 
         searchField.perform(click()).perform(clearText())
         searchButton.perform(click())
-        Thread.sleep(3000)
+        repoResult.waitForExists(3000)
         repoResult.isFocused
-        repoResultList
     }
 
     @Test
@@ -40,9 +39,8 @@ class FindRepoTests : SearchScreen(){
         searchField.perform(click())
         searchField.perform(click()).perform(typeText("CodeFitness"))
         searchButton.perform(click())
-        Thread.sleep(3000)
-        repoResult.isFocused
-        //repoResultList.atPosition(0).perform(click())
+        repoResult.waitForExists(3000)
+        repoResultList.atPosition(0).perform(click())
         chromeBrowser.isFocused
 
     }
@@ -52,12 +50,15 @@ class FindRepoTests : SearchScreen(){
 
         //To Test that user can scroll the repolist results after searching for a term "Kotlin"
 
-        searchField.perform(click()).perform(typeText("Kotlin"))
+    searchField.perform(click()).perform(typeText("Kotlin"))
         searchButton.perform(click())
-        Thread.sleep(3000)
+        repoResult.waitForExists(3000)
         repoResult.isFocused
         repoResult.isScrollable
-        repoResultList
 
     }
+
+
+
 }
+

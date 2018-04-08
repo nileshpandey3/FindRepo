@@ -27,9 +27,11 @@ open class ResultScreen {
 
 
     val waitForResults = uiDevice.findObject(UiSelector().className("android.widget.FrameLayout").index(0))
-            .waitForExists(3000)
+
 
     val repoResult = uiDevice.findObject(UiSelector().resourceId("com.example.nileshpandey.findrepo:id/repoListView"))!!
+
+
 
 
 
