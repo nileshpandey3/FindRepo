@@ -49,7 +49,7 @@ class FindRepoTests : SearchScreen() {
     }
 
     @Test
-    fun verifyScrolling(): ViewAction? {
+    fun verifyScrolling(){
 
         //To Test that user can scroll the repolist results after searching for a term "Kotlin"
 
@@ -58,7 +58,6 @@ class FindRepoTests : SearchScreen() {
         repoResult.waitForExists(3000)
         assert(repoResult.isFocused )
         assert(repoResult.isScrollable)
-        repoResultList.perform(verifyScrolling())
 
     }
 }
