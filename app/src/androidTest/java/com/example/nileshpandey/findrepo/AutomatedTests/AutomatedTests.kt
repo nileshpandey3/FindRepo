@@ -1,5 +1,6 @@
 
 package com.example.nileshpandey.findrepo.AutomatedTests
+import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
@@ -11,10 +12,11 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-class FindRepoTests : SearchScreen(){
+class FindRepoTests : SearchScreen() {
 
 
-    @Rule @JvmField
+    @Rule
+    @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
 
@@ -27,11 +29,12 @@ class FindRepoTests : SearchScreen(){
         searchField.perform(click()).perform(clearText())
         searchButton.perform(click())
         repoResult.waitForExists(3000)
-        repoResult.isFocused
+        assert(repoResult.exists())
+        assert(repoResult.isFocused)
     }
 
     @Test
-    fun verifyFirstRepoLink(){
+    fun verifyFirstRepoLink() {
 
         //To Test that when clicked on the first item in the search result  it opens
         //the associated Github repo page in chrome browser
@@ -41,24 +44,26 @@ class FindRepoTests : SearchScreen(){
         searchButton.perform(click())
         repoResult.waitForExists(3000)
         repoResultList.atPosition(0).perform(click())
-        chromeBrowser.isFocused
+        assert(chromeBrowser.isFocused)
 
     }
 
     @Test
-    fun verifyScrolling(){
+    fun verifyScrolling(): ViewAction? {
 
         //To Test that user can scroll the repolist results after searching for a term "Kotlin"
 
-    searchField.perform(click()).perform(typeText("Kotlin"))
+        searchField.perform(click()).perform(typeText("Kotlin"))
         searchButton.perform(click())
         repoResult.waitForExists(3000)
-        repoResult.isFocused
-        repoResult.isScrollable
+        assert(repoResult.isFocused )
+        assert(repoResult.isScrollable)
+        repoResultList.perform(verifyScrolling())
 
     }
-
-
-
 }
+
+
+
+
 
